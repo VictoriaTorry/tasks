@@ -1,4 +1,4 @@
-exports.handler = async (event) => {
+exports.handler = async (event, context) => {
     // TODO implement
     let method = await event.requestContext.http.method;
     let path = await event.requestContext.http.path;
@@ -7,12 +7,19 @@ exports.handler = async (event) => {
 
     const successResponse = {
         statusCode: 200,
-        message: "Hello from Lambda",
+        body: {
+            statusCode: 200,
+            message: "Hello from Lambda",
+        }
+        
     };
 
     const unsuccessRespond = {
-        "statusCode": 400,
-        "message": `Bad request syntax or unsupported method. Request path: ${path}. HTTP method: ${method}`
+        statusCode: 400,
+        body: {
+            statusCode: 400,
+            message: `Bad request syntax or unsupported method. Request path: ${path}. HTTP method: ${method}`
+        }
     }
 
     if  (method === "GET" && path === "/hello") {
