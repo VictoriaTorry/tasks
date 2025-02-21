@@ -1,9 +1,7 @@
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
     // TODO implement
     let method = await event.requestContext.http.method;
     let path = await event.requestContext.http.path;
-
-    // event.httpMethod === "GET"
 
     const successResponse = {
         statusCode: 200,
